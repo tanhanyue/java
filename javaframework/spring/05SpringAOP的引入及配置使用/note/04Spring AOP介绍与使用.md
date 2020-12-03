@@ -664,7 +664,7 @@ public class LogUtil {
 }
 ```
 
-​		刚刚只是获取了方法的信息，但是如果需要获取结果，还需要添加另外一个方法参数，并且告诉spring使用哪个参数来进行结果接收
+​		刚刚只是获取了方法的信息，但是如果需要获取结果，还需要添加另外一个方法参数，并且告诉spring使用哪个参数来进行结果接收，必须要在注解中添加Returning="result",这个result必须和参数列表中的参数名称保持一致
 
 LogUtil.java
 
@@ -677,7 +677,7 @@ LogUtil.java
     }
 ```
 
-​		也可以通过相同的方式来获取异常的信息
+​		也可以通过相同的方式来获取异常的信息，throwing ="Exception"
 
 LogUtil.java
 
@@ -688,6 +688,12 @@ LogUtil.java
         System.out.println(name+"方法出现异常："+exception);
     }
 ```
+
+​		如果想要添加其他参数，必须要添加args(参数列表), argNames(参数列表)
+```java
+   @AfterThrowing(value = "execution( public int com.mashibing.inter.MyCalculator.*(int,int))" && args(JoinPoint, k)", argNames = "JoinPoint, k")
+```
+
 
 ###### 		4、spring对通过方法的要求
 
